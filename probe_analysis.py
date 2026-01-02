@@ -13,17 +13,25 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import StratifiedKFold
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
-import seaborn as sns
+import os
 
 # ==============================================================================
 # 1. LOAD DATA
 # ==============================================================================
 print("Loading data...")
-honest_acts = torch.load('honest_acts.pt').float().numpy()      # Shape: [N, Layers, Dim]
-syco_acts = torch.load('sycophantic_acts.pt').float().numpy()   # Shape: [N, Layers, Dim]
+
+# Repo-relative paths (this script is expected to live in ./scripts/)
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+DATA_DIR = os.path.join(PROJECT_ROOT, "data")
+ACT_DIR = os.path.join(PROJECT_ROOT, "activations")
+PLOTS_DIR = os.path.join(PROJECT_ROOT, "plots")
+os.makedirs(PLOTS_DIR, exist_ok=True)
+
+honest_acts = torch.load(os.path.join(ACT_DIR, "honest_acts.pt")).float().numpy()      # [N, Layers, Dim]
+syco_acts = torch.load(os.path.join(ACT_DIR, "sycophantic_acts.pt")).float().numpy()   # [N, Layers, Dim]
 
 # Load Ground Truth Judgments (Did the model actually lie?)
-with open('sycophancy_labels.json', 'r') as f:
+with open(os.path.join(DATA_DIR, "sycophancy_labels.json"), "r") as f:
     syco_labels = np.array(json.load(f))
 
 # Filter: Only use examples where the model *actually* was sycophantic
@@ -96,8 +104,9 @@ plt.ylabel('Classification Accuracy')
 plt.grid(True, alpha=0.3)
 plt.axvline(best_layer, color='r', linestyle='--', label=f'Peak (L{best_layer})')
 plt.legend()
-plt.savefig('layer_accuracy.png')
-print("Saved layer_accuracy.png")
+acc_path = os.path.join(PLOTS_DIR, "layer_accuracy.png")
+plt.savefig(acc_path)
+print(f"Saved {acc_path}")
 
 # Plot 2: PCA of Best Layer
 # We use the same X/y constructed above for the best layer
@@ -121,5 +130,6 @@ plt.title(f'PCA of Activations at Layer {best_layer}')
 plt.xlabel('PC1')
 plt.ylabel('PC2')
 plt.legend()
-plt.savefig('pca_separation.png')
-print("Saved pca_separation.png")
+pca_path = os.path.join(PLOTS_DIR, "pca_separation.png")
+plt.savefig(pca_path)
+print(f"Saved {pca_path}")

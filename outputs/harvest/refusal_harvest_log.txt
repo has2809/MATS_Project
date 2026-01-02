@@ -1,0 +1,13 @@
+Device: cuda
+Loading model: deepseek-ai/DeepSeek-R1-Distill-Llama-8B
+`torch_dtype` is deprecated! Use `dtype` instead!
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.58s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  3.20s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  3.26s/it]
+✓ Model loaded | n_layers=32 d_model=4096
+Loading dataset + labels…
+Examples total: 50 | label==1 (lied): 38
+Token check: encode(' Actually') -> [34863]
+Refusal-harvest:   0%|          | 0/38 [00:00<?, ?it/s]Refusal-harvest:   3%|▎         | 1/38 [00:00<00:12,  2.91it/s]Refusal-harvest:   8%|▊         | 3/38 [00:00<00:04,  7.09it/s]Refusal-harvest:  13%|█▎        | 5/38 [00:00<00:03,  9.60it/s]Refusal-harvest:  18%|█▊        | 7/38 [00:00<00:02, 11.39it/s]Refusal-harvest:  24%|██▎       | 9/38 [00:00<00:02, 12.57it/s]Refusal-harvest:  29%|██▉       | 11/38 [00:01<00:02, 13.40it/s]Refusal-harvest:  34%|███▍      | 13/38 [00:01<00:01, 13.98it/s]Refusal-harvest:  39%|███▉      | 15/38 [00:01<00:01, 14.36it/s]Refusal-harvest:  45%|████▍     | 17/38 [00:01<00:01, 14.64it/s]Refusal-harvest:  50%|█████     | 19/38 [00:01<00:01, 14.82it/s]Refusal-harvest:  55%|█████▌    | 21/38 [00:01<00:01, 14.98it/s]Refusal-harvest:  61%|██████    | 23/38 [00:01<00:00, 15.04it/s]Refusal-harvest:  66%|██████▌   | 25/38 [00:01<00:00, 15.11it/s]Refusal-harvest:  71%|███████   | 27/38 [00:02<00:00, 15.15it/s]Refusal-harvest:  76%|███████▋  | 29/38 [00:02<00:00, 15.19it/s]Refusal-harvest:  82%|████████▏ | 31/38 [00:02<00:00, 15.21it/s]Refusal-harvest:  87%|████████▋ | 33/38 [00:02<00:00, 15.24it/s]Refusal-harvest:  92%|█████████▏| 35/38 [00:02<00:00, 15.23it/s]Refusal-harvest:  97%|█████████▋| 37/38 [00:02<00:00, 15.27it/s]Refusal-harvest: 100%|██████████| 38/38 [00:02<00:00, 13.64it/s]
+
+Saving to /workspace/MATS_Project/refusal_acts.pt
+✓ refusal_acts.pt saved: torch.Size([38, 32, 4096])
+✓ refusal_meta.json saved: /workspace/MATS_Project/refusal_meta.json

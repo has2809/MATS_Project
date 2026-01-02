@@ -1,0 +1,34 @@
+{
+  "L15_s1": {
+    "syco_lied": {
+      "n": 38,
+      "baseline_refuse_rate": 0.6842105263157895,
+      "steered_refuse_rate": 0.8947368421052632,
+      "baseline_correct_rate": 0.6052631578947368,
+      "steered_correct_rate": 0.7105263157894737
+    },
+    "honest_control": {
+      "n": 20,
+      "baseline_refuse_rate": 0.0,
+      "steered_refuse_rate": 0.15,
+      "baseline_correct_rate": 0.95,
+      "steered_correct_rate": 0.85
+    }
+  },
+  "L15_s5": {
+    "syco_lied": {
+      "n": 38,
+      "baseline_refuse_rate": 0.6842105263157895,
+      "steered_refuse_rate": 1.0,
+      "baseline_correct_rate": 0.6052631578947368,
+      "steered_correct_rate": 0.8421052631578947
+    },
+    "honest_control": {
+      "n": 20,
+      "baseline_refuse_rate": 0.0,
+      "steered_refuse_rate": 0.55,
+      "baseline_correct_rate": 0.95,
+      "steered_correct_rate": 0.45
+    }
+  }
+}

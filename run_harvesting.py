@@ -11,15 +11,36 @@ Method:
   3. Save [N_examples, N_layers, D_model] tensors for PCA analysis
 """
 
-from huggingface_hub import login
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import json
 from tqdm import tqdm
 import os
 
-# Login
-login(token="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")
+# =============================================================================
+# PATHS (repo-relative; this script is expected to live in ./scripts/)
+# =============================================================================
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+DATA_DIR = os.path.join(PROJECT_ROOT, "data")
+ACT_DIR = os.path.join(PROJECT_ROOT, "activations")
+OUT_DIR = os.path.join(PROJECT_ROOT, "outputs")
+HARVEST_DIR = os.path.join(OUT_DIR, "harvest")
+os.makedirs(ACT_DIR, exist_ok=True)
+os.makedirs(HARVEST_DIR, exist_ok=True)
+
+DATASET_PATH = os.path.join(DATA_DIR, "sycophancy_dataset.json")
+HONEST_ACTS_PATH = os.path.join(ACT_DIR, "honest_acts.pt")
+SYCO_ACTS_PATH = os.path.join(ACT_DIR, "sycophantic_acts.pt")
+EXPERIMENT_LOG_PATH = os.path.join(HARVEST_DIR, "experiment_log.json")
+
+# Optional HuggingFace login (DO NOT hardcode tokens in code)
+from huggingface_hub import login  # noqa: E402
+
+HF_TOKEN = os.environ.get("HF_TOKEN")
+if HF_TOKEN:
+    login(token=HF_TOKEN)
+else:
+    print("HF_TOKEN not set; assuming you are already logged in or the model is cached.")
 
 # [OPTIMIZATION] Enable TF32 for speed on Ampere+ GPUs
 torch.backends.cuda.matmul.allow_tf32 = True
@@ -50,7 +71,7 @@ print(f"Hidden size: {model.config.hidden_size}\n")
 # LOAD DATASET
 # =============================================================================
 print("Loading sycophancy dataset...")
-with open('/workspace/MATS_Project/sycophancy_dataset.json', 'r') as f:
+with open(DATASET_PATH, "r") as f:
     dataset = json.load(f)
 
 print(f"✓ Loaded {len(dataset)} examples\n")
@@ -199,12 +220,12 @@ print(f"Honest activations shape: {honest_tensor.shape}")
 print(f"Sycophantic activations shape: {syco_tensor.shape}")
 
 # Save tensors
-torch.save(honest_tensor, '/workspace/MATS_Project/honest_acts.pt')
-torch.save(syco_tensor, '/workspace/MATS_Project/sycophantic_acts.pt')
+torch.save(honest_tensor, HONEST_ACTS_PATH)
+torch.save(syco_tensor, SYCO_ACTS_PATH)
 print(f"✓ Saved activation tensors")
 
 # Save metadata
-with open('/workspace/MATS_Project/experiment_log.json', 'w') as f:
+with open(EXPERIMENT_LOG_PATH, "w") as f:
     json.dump(metadata, f, indent=2)
 print(f"✓ Saved experiment log")
 
@@ -227,7 +248,7 @@ print("="*70)
 print("HARVESTING COMPLETE")
 print("="*70)
 print(f"\nFiles created:")
-print(f"  - honest_acts.pt ({honest_tensor.shape})")
-print(f"  - sycophantic_acts.pt ({syco_tensor.shape})")
-print(f"  - experiment_log.json ({len(metadata)} entries)")
+print(f"  - {HONEST_ACTS_PATH} ({honest_tensor.shape})")
+print(f"  - {SYCO_ACTS_PATH} ({syco_tensor.shape})")
+print(f"  - {EXPERIMENT_LOG_PATH} ({len(metadata)} entries)")
 
