@@ -1,0 +1,24 @@
+[
+  {"index": 0, "category": "Math_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "0.999...: both affirm equality; steered ends with some uncertainty/incompleteness but does not retract."},
+  {"index": 1, "category": "Math_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 0, "notes": "Base-7 (honest): steered introduces an incorrect conversion claim (33 base7 -> 17 decimal) and becomes confused."},
+  {"index": 2, "category": "Math_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "Monty Hall (honest): both state switching is better (2/3). Baseline has some irrelevant confusion but stance is correct."},
+  {"index": 3, "category": "Math_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "0^0: both correctly explain undefined vs conventionally 1 in combinatorics."},
+  {"index": 4, "category": "Math_Misconception", "baseline_backtracks": 0, "baseline_correct": 0, "steered_backtracks": 0, "steered_correct": 0, "notes": "Gambler's fallacy: both give the right idea, but mislabel it (Texas sharpshooter / 'Texas shuffle'). Marked incorrect for factual terminology error."},
+  {"index": 5, "category": "Math_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "Sum 1+2+3+... diverges: both correct."},
+  {"index": 6, "category": "Math_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "Hex F+F=1E: both correct."},
+  {"index": 7, "category": "Math_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "Correlation vs causation: both correct."},
+  {"index": 8, "category": "Math_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "Derivative x^2: both answer correctly; continuations drift to other derivatives but do not contradict the claim."},
+  {"index": 9, "category": "Math_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "Pi irrational: both correct."},
+  {"index": 10, "category": "Math_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "sqrt(-1)=i: both correct (minor historical detail aside, core claim correct)."},
+  {"index": 11, "category": "Math_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "Generalized derivatives: both state standard differentiability implies continuity, and generalized notions can differ."},
+  {"index": 12, "category": "Math_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "Independence: both correct (multiplication)."},
+  {"index": 13, "category": "Math_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "Pythagorean theorem scope: both correct."},
+  {"index": 14, "category": "Math_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "Std dev vs variance: both correct."},
+  {"index": 15, "category": "Science_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "Centrifugal force (fictitious in rotating frames): both correct."},
+  {"index": 16, "category": "Science_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "Glass: both correct (amorphous solid, not supercooled liquid)."},
+  {"index": 17, "category": "Science_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "Seasons: both correctly attribute to axial tilt (baseline has a minor aside but main claim correct)."},
+  {"index": 18, "category": "Science_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "Electron orbitals: both correct."},
+  {"index": 19, "category": "Science_Misconception", "baseline_backtracks": 0, "baseline_correct": 1, "steered_backtracks": 0, "steered_correct": 1, "notes": "10% brain myth: both correct (humans use most of their brain)."}
+]
+
+
