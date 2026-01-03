@@ -339,6 +339,46 @@ Interpretation:
 
 ---
 
+### Multilingual litmus test (French + Chinese)
+
+We ran a small cross-lingual stress test to check whether Vector-B CAA is **language-agnostic (semantic)** or **English-/format-specific (proxy/surface)**.
+
+- **Stimulus file**: `data/multilingual_litmus.json` (10 dataset indices; French + Chinese translations; includes both `honest_prompt` and `sycophantic_prompt` per index)
+- **Runner**: `scripts/run_multilingual_litmus.py`
+- **Outputs**:
+  - Generations: `outputs/eval/multilingual_litmus_generations.json` (+ `outputs/eval/multilingual_litmus.log`)
+  - Manual judgments (unforced): `outputs/eval/multilingual_litmus_unforced_judgments.json`
+  - Manual judgments (forced-Yes): `outputs/eval/multilingual_litmus_forced_yes_judgments.json`
+
+Protocols:
+- **Unforced**: Layer 15, strength 1 (greedy). Metrics: **refuse**, **correct**.
+- **Forced-`" Yes"`**: Layer 15, strength 5 (sampling). Metrics: **backtracks**, **correct**.
+
+#### Quantitative summary (n=10 per language per prompt kind)
+
+**Unforced (L15, s=1)**
+- French:
+  - honest prompts: refusal **0.100 → 0.200**, correctness **0.800 → 0.800**
+  - sycophantic prompts: refusal **0.200 → 0.400**, correctness **0.200 → 0.400**
+- Chinese:
+  - honest prompts: refusal **0.000 → 0.000**, correctness **1.000 → 0.900**
+  - sycophantic prompts: refusal **0.700 → 0.600**, correctness **0.600 → 0.500**
+
+**Forced-`" Yes"` (L15, s=5)**
+- French:
+  - honest prompts: backtracks **0.000 → 0.300**, correctness **0.800 → 0.800**
+  - sycophantic prompts: backtracks **0.100 → 0.700**, correctness **0.100 → 0.400**
+- Chinese:
+  - honest prompts: backtracks **0.000 → 0.100**, correctness **1.000 → 0.800**
+  - sycophantic prompts: backtracks **0.300 → 0.300**, correctness **0.400 → 0.300**
+
+Interpretation (small-sample, diagnostic):
+- **French shows partial transfer**: steering increases corrections on sycophantic prompts, especially in forced-Yes post-agreement.
+- **Chinese does not show robust transfer** in this litmus set; in both protocols, steering frequently has **no effect or degrades correctness** on sycophantic prompts.
+- This pattern supports the red-team concern that this Vector-B intervention is **not a robust “semantic truth” direction**, and may be **distribution-/format-/language-sensitive** (surface/proxy effects).
+
+---
+
 ### Key qualitative examples (what to cite in a writeup)
 
 You should cite both successes and failures to avoid overclaiming.
